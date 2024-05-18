@@ -37,7 +37,7 @@ cd Downloads
 ```
 python project.py
 ```
-![UI_Main](img/UI.png)
+(img/UI.png)
 ```
 ```
 **User manual** 
