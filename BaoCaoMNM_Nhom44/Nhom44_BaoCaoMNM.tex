@@ -1,0 +1,856 @@
+\documentclass[a4paper]{article}
+\usepackage{vntex}
+%\usepackage[english,vietnam]{babel}
+%\usepackage[utf8]{inputenc}
+
+%\usepackage[utf8]{inputenc}
+%\usepackage[francais]{babel}
+\usepackage{a4wide,amssymb,epsfig,latexsym,multicol,array,hhline,fancyhdr}
+\usepackage{booktabs}
+\usepackage{amsmath}
+\usepackage{lastpage}
+\usepackage[lined,boxed,commentsnumbered]{algorithm2e}
+\usepackage{enumerate}
+\usepackage{color}
+\usepackage{graphicx}							% Standard graphics package
+\usepackage{array}
+\usepackage{tabularx, caption}
+\usepackage{multirow}
+\usepackage[framemethod=tikz]{mdframed}% For highlighting paragraph backgrounds
+\usepackage{multicol}
+\usepackage{rotating}
+\usepackage{graphics}
+\usepackage{geometry}
+\usepackage{setspace}
+\usepackage{epsfig}
+\usepackage{tikz}
+\usepackage{listings}
+\usetikzlibrary{arrows,snakes,backgrounds}
+\usepackage{hyperref}
+\hypersetup{urlcolor=blue,linkcolor=black,citecolor=black,colorlinks=true} 
+
+\newtheorem{theorem}{{\bf Định lý}}
+\newtheorem{property}{{\bf Tính chất}}
+\newtheorem{proposition}{{\bf Mệnh đề}}
+\newtheorem{corollary}[proposition]{{\bf Hệ quả}}
+\newtheorem{lemma}[proposition]{{\bf Bổ đề}}
+
+\everymath{\color{blue}}
+%\usepackage{fancyhdr}
+\setlength{\headheight}{40pt}
+\pagestyle{fancy}
+\fancyhead{} % clear all header fields
+\fancyhead[L]{
+ \begin{tabular}{rl}
+    \begin{picture}(25,15)(0,0)
+    \put(0,-8){\includegraphics[width=8mm, height=8mm]{logoITSGUsmall.png}}
+    %\put(0,-8){\epsfig{width=10mm,figure=hcmut.eps}}
+   \end{picture}&
+	%\includegraphics[width=8mm, height=8mm]{hcmut.png} & %
+	\begin{tabular}{l}
+		\textbf{\bf \ttfamily Trường Đại học Sài Gòn}\\
+		\textbf{\bf \ttfamily Khoa Công Nghệ Thông Tin}
+	\end{tabular} 	
+ \end{tabular}
+}
+\fancyhead[R]{
+	\begin{tabular}{l}
+		\tiny \bf \\
+		\tiny \bf 
+	\end{tabular}  }
+\fancyfoot{} % clear all footer fields
+\fancyfoot[L]{\scriptsize \ttfamily Bài tập lớn môn Phát triển phần mềm mã nguồn mở - Niên khóa 2023-2024}
+\fancyfoot[R]{\scriptsize \ttfamily Trang {\thepage}/\pageref{LastPage}}
+\renewcommand{\headrulewidth}{0.3pt}
+\renewcommand{\footrulewidth}{0.3pt}
+
+
+%%%
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{3}
+\makeatletter
+\newcounter {subsubsubsection}[subsubsection]
+\renewcommand\thesubsubsubsection{\thesubsubsection .\@alph\c@subsubsubsection}
+\newcommand\subsubsubsection{\@startsection{subsubsubsection}{4}{\z@}%
+                                     {-3.25ex\@plus -1ex \@minus -.2ex}%
+                                     {1.5ex \@plus .2ex}%
+                                     {\normalfont\normalsize\bfseries}}
+\newcommand*\l@subsubsubsection{\@dottedtocline{3}{10.0em}{4.1em}}
+\newcommand*{\subsubsubsectionmark}[1]{}
+\makeatother
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+	language=Matlab,
+	aboveskip=3mm,
+	belowskip=3mm,
+	showstringspaces=false,
+	columns=flexible,
+	basicstyle={\small\ttfamily},
+	numbers=none,
+	numberstyle=\tiny\color{gray},
+	keywordstyle=\color{blue},
+	commentstyle=\color{dkgreen},
+	stringstyle=\color{mauve},
+	breaklines=true,
+	breakatwhitespace=true,
+	tabsize=3,
+	numbers=left,
+	stepnumber=1,
+	numbersep=1pt,    
+	firstnumber=1,
+	numberfirstline=true
+}
+
+\begin{document}
+
+\begin{titlepage}
+\begin{center}
+TRƯỜNG ĐẠI HỌC SÀI GÒN \\
+KHOA CÔNG NGHỆ THÔNG TIN
+\end{center}
+\vspace{1cm}
+
+\begin{figure}[h!]
+\begin{center}
+\includegraphics[width=3cm]{logoITSGU.png}
+\end{center}
+\end{figure}
+
+\vspace{1cm}
+
+\begin{center}
+\begin{tabular}{c}
+    \multicolumn{1}{l}{\textbf{{\Large PHÁT TRIỂN PHẦN MỀM MÃ NGUỒN MỞ}}}\\
+    ~~\\
+    \hline
+    \\
+    \multicolumn{1}{l}{\textbf{{\Large Phát triển phần mềm }}}\\
+    \\
+    \textbf{{\Huge Play Audio trên PYTHON}}\\
+    \\
+    \hline
+\end{tabular}
+\end{center}
+
+\vspace{3cm}
+
+\begin{table}[h]
+\begin{tabular}{rrl}
+\hspace{5 cm} & GVHD: & Từ Lãng Phiêu\\
+& SV: & SV1 - MSSV\\
+& & Nguyen Quoc Tai - 3120560085 \\
+& & SV2 - MSSV \\
+& & Nguyen Hoai Phuc - 3120560075 \\
+\end{tabular}
+\vspace{1.5 cm}
+\end{table}
+
+\begin{center}
+{\footnotesize TP. HỒ CHÍ MINH, THÁNG 5/2024}
+\end{center}
+\end{titlepage}
+
+\newpage
+\tableofcontents
+\newpage
+
+\section{Phần giới thiệu}
+\subsection{Giới thiệu chung}
+Trong thời đại công nghệ hiện, thì nhu cầu giải trí hằng ngày của mọi người bằng âm nhạc ngày càng gia tăng. Và các thiết bị phát âm thanh và phần mềm liên quan đã trở thành một phần không thể thiếu trong cuộc sống hàng ngày. Phần mềm phát âm thanh giúp người dùng dễ dàng quản lý và phát các tệp nhạc của họ, đồng thời cung cấp trải nghiệm nghe nhạc tốt hơn với các tính năng tùy chỉnh như điều khiển âm lượng, tạo danh sách phát và phát nhạc ngẫu nhiên. Với sự phát triển của công nghệ, việc xây dựng phần mềm phát âm thanh không còn là một nhiệm vụ quá phức tạp, đặc biệt là khi sử dụng Python, một ngôn ngữ lập trình mạnh mẽ và dễ học.
+
+\subsection{Tổng quan phần mềm}
+Chương trình này là một phần mềm phát âm thanh được phát triển bằng ngôn ngữ Python với các chức năng phát âm thanh cơ bản: phát nhạc, tạm dừng nhạc,... Bên cạnh đó, chương trình còn sử dụng các thư viện như:
+\begin{itemize}
+    \item Tkinter để xây dựng giao diện đồ họa của ứng dụng
+    \item Pygame để xử lý âm thanh (phát âm thanh,...)
+    \item Threading để xử lí các tiến trình song song trong ứng dụng
+    \item PIL để xử lý hình ảnh.
+\end{itemize}
+
+\subsection{Mục tiêu đề tài}
+Mục tiêu của đề tài là phát triển một phần mềm có thể phát nhạc từ các file âm thanh, hỗ trợ các file có định dạng .wav, .mp3, .flac, giao diện của giao diện thân thiện với người dùng và các chức năng điều khiển phát nhạc cơ bản.
+
+\section{Giới thiệu Python}
+Python là một ngôn ngữ lập trình đa mẫu hình, nó hỗ trợ hoàn toàn mẫu lập trình hướng đối tượng và lập trình cấu trúc; ngoài ra về mặt tính năng, Python cũng hỗ trợ lập trình hàm và lập trình hướng khía cạnh. Nhờ vậy mà Python có thể làm được rất nhiều thứ, sử dụng trong nhiều lĩnh vực khác nhau.
+
+\subsection{Ứng dụng của Python}
+\begin{itemize}
+    \item Làm Web với các Framework của Python: Django và Flask là 2 framework phổ biến hiện nay dành cho các lập trình viên Python để tạo ra các website.
+    \item Tool tự động hóa: các ứng dụng như từ điển, crawl dữ liệu từ website, tool giúp tự động hóa công việc được các lập trình viên ưu tiên lựa chọn Python để viết nhờ tốc độ code nhanh của nó.
+    \item Khoa học máy tính: Trong Python có rất nhiều thư viện quan trọng phục vụ cho ngành khoa học máy tính như: OpenCV cho xử lý ảnh và machine learning, Scipy và Numpys cho lĩnh vực toán học, đại số tuyến tính, Pandas cho việc phân tích dữ liệu, ...
+    \item Lĩnh vực IoT: Python có thể viết được các ứng dụng cho nền tảng nhúng, đồng thời cũng được lựa chọn cho việc xử lý dữ liệu lớn. Vì thế Python là một ngôn ngữ quen thuộc trong lĩnh vực Internet kết nối vạn vật
+    \item Làm game: Pygame là một bộ module Python cross-platform được thiết kế để viết game cho cả máy tính và các thiết bị di động
+\end{itemize}
+
+\subsection{Đặc tính của Python}
+Python đang trở nên phổ biến trong cộng đồng lập trình nhờ có các đặc tính sau:
+\begin{itemize}
+    \item Ngôn ngữ thông dịch: Python được xử lý trong thời gian chạy bởi Trình thông dịch Python.
+    \item Ngôn ngữ hướng đối tượng: Nó hỗ trợ các tính năng và kỹ thuật lập trình hướng đối tượng.
+    \item Ngôn ngữ lập trình tương tác: Người dùng có thể tương tác trực tiếp với trình thông dịch python để viết chương trình.
+    \item Ngôn ngữ dễ học: Python rất dễ học, đặc biệt là cho người mới bắt đầu.
+    \item Cú pháp đơn giản: Việc hình thành cú pháp Python rất đơn giản và dễ hiểu, điều này cũng làm cho nó trở nên phổ biến.
+    \item Dễ đọc: Mã nguồn Python được xác định rõ ràng và có thể nhìn thấy bằng mắt.
+    \item Di động: Mã Python có thể chạy trên nhiều nền tảng phần cứng có cùng giao diện.
+    \item Có thể mở rộng: Người dùng có thể thêm các mô-đun cấp thấp vào trình thông dịch Python.
+    \item Có thể cải tiến: Python cung cấp một cấu trúc cải tiến để hỗ trợ các chương trình lớn sau đó là shell-script.
+\end{itemize}
+
+\section{Các thư viện sử dụng}
+\subsection{Thư viện os}
+Module os trong Python cung cấp các chức năng được sử dụng để tương tác với hệ điều hành và cũng có được thông tin liên quan về nó. OS đi theo các Module tiện ích tiêu chuẩn của Python. Module này cung cấp một cách linh động sử dụng chức năng phụ thuộc vào hệ điều hành.
+
+Module os trong python cho phép chúng ta làm việc với các tập tin và thư mục.
+
+\textbf{Các chức năng chính:}
+\begin{itemize}
+    \item Quản lý tập tin và thư mục
+    \begin{itemize}
+        \item Tạo, xóa, đổi tên, và di chuyển tập tin và thư mục.
+        \item Liệt kê các tập tin và thư mục trong một thư mục cụ thể.
+        \item Kiểm tra sự tồn tại của tập tin hoặc thư mục.
+    \end{itemize}
+    \item Thông tin hệ thống và môi trường
+    \begin{itemize}
+        \item Lấy thông tin về người dùng hiện tại.
+        \item Lấy các biến môi trường.
+        \item Thay đổi thư mục làm việc hiện tại.
+    \end{itemize}
+    \item Thực hiện các lệnh hệ thống
+    \begin{itemize}
+        \item Thực thi các lệnh hệ thống và chương trình con từ bên trong Python
+    \end{itemize}
+\end{itemize}
+
+\textbf{Một số hàm thông dụng:}
+\begin{itemize}
+    \item \texttt{os.chdir(path)}: Thay đổi thư mục làm việc hiện tại.
+    \item \texttt{os.listdir(path)}: Liệt kê các tập tin và thư mục trong một thư mục cụ thể.
+\end{itemize}
+
+\subsection{Thư viện Threading}
+Cung cấp các công cụ để tạo và quản lý các luồng (threads) trong Python. Một luồng là một dòng thực thi độc lập, cho phép các tác vụ được thực hiện song song, cải thiện hiệu suất và tương tác đồng thời trong ứng dụng.
+
+\textbf{Các hàm chính trong thư viện threading:}
+\begin{itemize}
+    \item \texttt{threading.Thread(target, args)}: Tạo một luồng mới với một hàm mục tiêu và các đối số tương ứng.
+    \item \texttt{start()}: Bắt đầu thực thi luồng.
+    \item \texttt{join()}: Chờ đến khi luồng kết thúc.
+    \item \texttt{is\_alive()}: Kiểm tra xem luồng đang hoạt động hay không.
+    \item \texttt{Lock()}: Tạo một đối tượng khóa mới để đồng bộ hóa truy cập vào các tài nguyên chia sẻ.
+\end{itemize}
+\subsection{Thư viện Tkinter}
+Tkinter là thư viện GUI tiêu chuẩn cho Python. Tkinter trong Python cung cấp một cách nhanh chóng và dễ dàng để tạo ra các ứng dụng GUI. Tkinter cung cấp giao diện hướng đối tượng cho bộ công cụ Tk GUI.
+
+\textbf{Đặc điểm của tkinter:}
+\begin{itemize}
+    \item Khả năng tạo ra các cửa sổ ứng dụng: Tkinter cho phép tạo và quản lý các cửa sổ ứng dụng với các yếu tố giao diện như nút bấm, nhãn, ô nhập liệu, hộp thoại và nhiều thành phần khác.
+    \item Thiết kế giao diện theo mô hình sự kiện: Tkinter sử dụng mô hình lập trình theo sự kiện, trong đó các hành động của người dùng như nhấn nút hoặc nhập liệu sẽ kích hoạt các hàm xử lý sự kiện tương ứng.
+    \item Tính đa nền tảng: Ứng dụng Tkinter có thể chạy trên nhiều hệ điều hành khác nhau như Windows, macOS, và Linux mà không cần thay đổi mã nguồn.
+\end{itemize}
+
+\textbf{Các bước để tạo một ứng dụng Tkinter:}
+\begin{enumerate}
+    \item Import Tkinter module. (\texttt{from tkinter import *})
+    \item Tạo cửa sổ chính của ứng dụng GUI. (\texttt{top = Tk()})
+    \item Thêm một hoặc nhiều widget nói trên vào ứng dụng GUI.
+    \item Gọi vòng lặp sự kiện chính để các hành động có thể diễn ra trên màn hình máy tính của người dùng. (\texttt{top.mainloop()})
+\end{enumerate}
+
+\subsection{Thư viện pygame}
+Pygame là một thư viện mạnh mẽ để phát triển các trò chơi video và các ứng dụng đa phương tiện trong Python. Trong đề tài này, Pygame được sử dụng để xử lý âm thanh. Một số tính năng nổi bật của Pygame bao gồm:
+\begin{itemize}
+    \item Hỗ trợ phát và quản lý âm thanh: Pygame cung cấp các công cụ để tải, phát và điều khiển các tệp âm thanh với nhiều định dạng khác nhau như MP3, WAV, và Ogg.
+    \item Tính năng trộn âm thanh: Thư viện \texttt{pygame.mixer} cho phép phát đồng thời nhiều tệp âm thanh, điều chỉnh âm lượng và quản lý các kênh âm thanh.
+    \item Khả năng tích hợp cao: Pygame có thể dễ dàng tích hợp với các thư viện khác của Python để tạo ra các ứng dụng đa phương tiện phức tạp.
+\end{itemize}
+
+\subsection{Thư viện PIL (Pillow)}
+Pillow, trước đây được gọi là PIL (Python Imaging Library), là một thư viện xử lý hình ảnh trong Python, cung cấp nhiều công cụ để thao tác và xử lý các file hình ảnh. Các tính năng chính của Pillow bao gồm:
+\begin{itemize}
+    \item Hỗ trợ nhiều định dạng hình ảnh: Pillow có thể mở, lưu và chuyển đổi giữa các định dạng hình ảnh phổ biến như JPEG, PNG, GIF, BMP, và TIFF.
+    \item Xử lý và biến đổi hình ảnh: Thư viện này cung cấp các hàm để thay đổi kích thước, cắt, xoay, lọc, và áp dụng các hiệu ứng đặc biệt lên hình ảnh.
+    \item Tích hợp với Tkinter: Pillow dễ dàng tích hợp với Tkinter để hiển thị hình ảnh trong các ứng dụng GUI.
+\end{itemize}
+
+\section{Thiết kế hệ thống}
+\subsection{Thiết kế giao diện người dùng}
+Giao diện người dùng bao gồm các thành phần chính:
+\begin{itemize}
+    \item Nút Play, Pause, Stop, Resume
+    \item Thanh trượt âm lượng
+    \item Thanh trượt tiến trình phát nhạc
+    \item Danh sách phát nhạc
+    \item Nút thêm file và thư mục nhạc
+    \item Nút phát bài hát ngẫu nhiên
+    \item Nút phát lại bài hát ban đầu
+\end{itemize}
+
+\textbf{Các chức năng chính:}
+\begin{itemize}
+    \item \textbf{Thêm Thư Mục/Nhạc (AddMusicFolder, AddMusic)}: Cho phép người dùng thêm các tập tin nhạc từ thư mục hoặc tập tin cụ thể vào danh sách phát. Các chức năng này được kích hoạt khi nhấp vào các nút "Open File" hoặc "Open Folder".
+    \item \textbf{Chơi Danh Sách Phát (PlayListSong)}: Cho phép người dùng chơi toàn bộ danh sách nhạc. Khi một bài hát kết thúc, chương trình sẽ tự động chuyển sang bài hát tiếp theo trong danh sách.
+    \item \textbf{Chơi Ngẫu Nhiên (PlayRandomSong)}: Chơi một bài hát ngẫu nhiên từ danh sách nhạc. Mỗi khi bài hát kết thúc, một bài hát ngẫu nhiên khác sẽ được chọn và phát.
+    \item \textbf{Chơi Nhạc (PlayMusic)}: Chơi bài hát được chọn từ danh sách nhạc.
+    \item \textbf{Dừng Nhạc (onstop)}: Dừng bài hát đang phát.
+    \item \textbf{Tạm Dừng Nhạc (onpause)}: Tạm dừng bài hát đang phát.
+    \item \textbf{Tiếp Tục Nhạc (onresume)}: Tiếp tục phát nhạc sau khi đã tạm dừng.
+    \item \textbf{Điều Chỉnh Thanh Tiến Trình Nhạc (adjust\_progess)}: Cho phép người dùng điều chỉnh thanh tiến trình để tua nhanh hoặc tua lùi bài hát.
+    \item \textbf{Điều Chỉnh Âm Lượng (set\_volume)}: Cho phép người dùng điều chỉnh âm lượng của bài hát.
+\end{itemize}
+
+\textbf{Sơ đồ hoạt động:}
+\begin{enumerate}
+    \item \textbf{Khởi tạo Giao Diện Người Dùng (GUI)}:
+    \begin{itemize}
+        \item Tạo cửa sổ giao diện người dùng sử dụng thư viện tkinter.
+        \item Định cấu hình kích thước, màu nền và tiêu đề cho cửa sổ.
+    \end{itemize}
+    \item \textbf{Thêm Nhạc từ Thư Mục hoặc Tập Tin}:
+    \begin{itemize}
+        \item Người dùng có thể thêm nhạc từ thư mục hoặc tập tin cụ thể vào danh sách phát.
+        \item Sử dụng hộp thoại để chọn thư mục hoặc tập tin nhạc và thêm chúng vào danh sách phát.
+    \end{itemize}
+    \item \textbf{Phát Nhạc từ Danh Sách Phát (PlayListSong)}:
+    \begin{itemize}
+        \item Cho phép người dùng chơi toàn bộ danh sách nhạc.
+        \item Lặp qua danh sách nhạc và phát từng bài hát một.
+        \item Khi một bài hát kết thúc, chuyển sang bài hát tiếp theo trong danh sách.
+    \end{itemize}
+    \item \textbf{Phát Bài Hát Ngẫu Nhiên (PlayRandomSong)}:
+    \begin{itemize}
+        \item Chọn một bài hát ngẫu nhiên từ danh sách nhạc và phát nó.
+        \item Lặp lại quá trình này cho đến khi người dùng dừng lại hoặc thoát khỏi chương trình.
+    \end{itemize}
+    \item \textbf{Chơi, Dừng, Tạm Dừng, Tiếp Tục Phát Nhạc}:
+    \begin{itemize}
+        \item Cung cấp các chức năng chơi, dừng, tạm dừng và tiếp tục phát nhạc cho người dùng.
+        \item Khi nhấn vào các nút tương ứng, chương trình thực hiện hành động tương ứng với chức năng đã chọn.
+    \end{itemize}
+    \item \textbf{Điều Chỉnh Thanh Tiến Trình và Âm Lượng}:
+    \begin{itemize}
+        \item Cho phép người dùng điều chỉnh thanh tiến trình để tua nhanh hoặc tua lùi bài hát.
+        \item Cho phép người dùng điều chỉnh âm lượng của bài hát.
+    \end{itemize}
+    \item \textbf{Cập Nhật Tiến Trình Phát Nhạc (update\_progess)}:
+    \begin{itemize}
+        \item Theo dõi tiến trình phát nhạc và cập nhật thanh tiến trình tương ứng trên giao diện người dùng.
+        \item Chương trình sẽ tự động cập nhật thanh tiến trình mỗi khi bài hát đang phát.
+    \end{itemize}
+    \item \textbf{Thread (Luồng)}:
+    \begin{itemize}
+        \item Sử dụng luồng (thread) để cập nhật tiến trình phát nhạc mà không làm tắc nghẽn giao diện người dùng.
+        \item Luồng này chạy đồng thời với giao diện người dùng để cập nhật thanh tiến trình phát nhạc.
+    \end{itemize}
+    \item \textbf{Mainloop}:
+    \begin{itemize}
+        \item Khởi động vòng lặp chính (mainloop) để chạy ứng dụng và đợi sự tương tác từ phía người dùng.
+        \item Ứng dụng sẽ tiếp tục chạy cho đến khi người dùng đóng cửa sổ hoặc thoát khỏi chương trình.
+    \end{itemize}
+\section{Mã nguồn chính}
+\subsection{Import thư viện}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}[language=Python]
+import os
+import time
+import threading
+import random
+import tkinter as tk
+from tkinter import *
+from tkinter import Tk
+from tkinter import filedialog
+from pygame import mixer
+from pygame import time
+import pygame
+from PIL import Image, ImageTk
+\end{lstlisting}
+\end{mdframed}
+
+Phần này import các thư viện cần thiết cho chương trình:
+\begin{itemize}
+    \item \textbf{os}: Thư viện hệ thống để tương tác với hệ điều hành.
+    \item \textbf{time}: Thư viện xử lý thời gian.
+    \item \textbf{threading}: Thư viện để tạo và quản lý các luồng (threads).
+    \item \textbf{random}: Thư viện để tạo ra các số ngẫu nhiên.
+    \item \textbf{tkinter}: Thư viện giao diện đồ họa để tạo cửa sổ và các thành phần giao diện.
+    \item \textbf{pygame}: Thư viện để xử lý âm thanh và đa phương tiện.
+    \item \textbf{PIL (Python Imaging Library)}: Thư viện để xử lý hình ảnh.
+\end{itemize}
+
+\subsection{Phần 2: Tạo cửa sổ GUI}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+root = tk.Tk()
+root.title("Music Player")
+root.geometry("920x735+400+85")
+root.configure(background='#A43B84')
+root.resizable(False,False)
+\end{lstlisting}
+\end{mdframed}
+Phần này tạo ra một cửa sổ GUI với các tùy chọn sau:
+\begin{itemize}
+   \item \textbf{root = tk.Tk()}: Tạo một đối tượng cửa sổ gốc của Tkinter.
+   \item \textbf{root.title("Music Player")}: Đặt tiêu đề cho cửa sổ là "Music Player".
+   \item \textbf{root.geometry("920x735+400+85")}: Đặt kích thước và vị trí của cửa sổ trên màn hình (920 pixel rộng, 735 pixel cao, vị trí (400, 85) từ góc trên bên trái màn hình).
+   \item \textbf{root.configure(background='#A43B84')}: Đặt màu nền của cửa sổ là mã màu hex #A43B84.
+   \item \textbf{root.resizable(False,False)}: Không cho phép thay đổi kích thước của cửa sổ theo chiều ngang và chiều dọc.
+\end{itemize}
+
+\subsection{Phần 3: Khởi tạo các biến toàn cục}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+Song_selected = False
+auto = True
+count = 0
+allstop = False
+tempstop = False
+\end{lstlisting}
+\end{mdframed}
+Phần này khởi tạo một số biến toàn cục để kiểm soát trạng thái của ứng dụng:
+\begin{itemize}
+   \item \textbf{Song\_selected = False}: Biến boolean để theo dõi xem có bài hát nào được chọn hay không.
+   \item \textbf{auto = True}: Biến boolean để kiểm soát chế độ phát tự động.
+   \item \textbf{count = 0}: Biến đếm để theo dõi tiến trình phát của bài hát.
+   \item \textbf{allstop = False}: Biến boolean để kiểm soát việc dừng phát tất cả các bài hát.
+   \item \textbf{tempstop = False}: Biến boolean để kiểm soát việc tạm dừng phát bài hát hiện tại.
+\end{itemize}
+
+\subsection{Phần 4: Tải các hình ảnh và khởi tạo mixer}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+ButtonPlay = Image.open("music/playresize(2).png")
+ButtonStop = Image.open("music/stopMusic.png")
+ButtonPause = Image.open("music/pauseresize.png")
+ButtonResume = Image.open("music/resumeMusic.png")
+ButtonRandom = Image.open("music/random.png")
+ButtonPLaylist = Image.open("music/playlist.png")
+ButtonOpenFile = Image.open("music/openFile.png")
+ButtonOpenFolder = Image.open("music/openFolder.png")
+ButtonPrevious = Image.open("music/previous.png")  # Thêm hình ảnh cho nút Previous
+ButtonNext = Image.open("music/next.png")
+ButtonRemoveSong = Image.open("music/delete.png")
+ButtonClearPlaylist = Image.open("music/delete_all.png")
+mixer.init()
+pygame.init()
+\end{lstlisting}
+\end{mdframed}
+
+Phần này:
+\begin{itemize}
+   \item Tải các hình ảnh sẽ được sử dụng cho các nút trên giao diện đồ họa bằng cách sử dụng thư viện PIL.
+   \item Khởi tạo mixer của pygame để xử lý âm thanh bằng lệnh \textbf{mixer.init()}.
+   \item Khởi tạo pygame bằng lệnh \textbf{pygame.init()} để có thể sử dụng các tính năng khác của pygame.
+\end{itemize}
+
+\subsection{Phần 5: Định nghĩa các hàm xử lý}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def AddMusicFolder():
+   path = filedialog.askdirectory()
+   if path:
+       os.chdir(path)
+       songs = os.listdir(path)
+
+       for song in songs:
+           flag = False
+           if song.endswith(".mp3")  or song.endswith(".wav") or song.endswith(".flac") :
+               for i in range(0,Playlist.size()):
+                   if(song == Playlist.get(i)):
+                       flag = True
+               if flag == False:
+                   Playlist.insert(END, song)
+\end{lstlisting}
+\end{mdframed}
+Hàm này cho phép người dùng chọn một thư mục chứa các file nhạc và thêm tất cả các file nhạc có đuôi \texttt{.mp3}, \texttt{.wav} hoặc \texttt{.flac} vào danh sách phát \texttt{Playlist}. Cụ thể:
+\begin{itemize}
+   \item \textbf{filedialog.askdirectory()}: Mở hộp thoại cho người dùng chọn thư mục.
+   \item \textbf{os.chdir(path)}: Thay đổi thư mục làm việc hiện tại thành thư mục đã chọn.
+   \item \textbf{os.listdir(path)}: Lấy danh sách các file và thư mục con trong thư mục đã chọn.
+   \item Với mỗi file trong danh sách, kiểm tra xem file đó có phải là file nhạc hay không bằng cách kiểm tra đuôi file.
+   \item Nếu file đó là file nhạc, kiểm tra xem nó đã có trong danh sách phát hay chưa bằng cách duyệt qua danh sách phát.
+   \item Nếu file chưa có trong danh sách phát, thêm nó vào cuối danh sách bằng \textbf{Playlist.insert(END, song)}.
+\end{itemize}
+\subsubsection{Hàm AddMusic()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def AddMusic():
+   flag = False
+   path = filedialog.askopenfilename()
+   print(path)
+   songpath = os.path.dirname(path)
+   os.chdir(songpath)
+   song = os.path.basename(path)
+   if song.endswith(".mp3") or song.endswith(".wav") or song.endswith(".flac") :
+       for i in range(0,Playlist.size()):
+           if(song == Playlist.get(i)):
+               flag = True
+       if flag == False:
+           Playlist.insert(END,song)
+\end{lstlisting}
+\end{mdframed}
+Hàm này cho phép người dùng chọn một file nhạc cụ thể và thêm nó vào danh sách phát \texttt{Playlist}. Cụ thể:
+\begin{itemize}
+   \item \textbf{filedialog.askopenfilename()}: Mở hộp thoại cho người dùng chọn file.
+   \item \textbf{os.path.dirname(path)}: Lấy đường dẫn thư mục chứa file đã chọn.
+   \item \textbf{os.chdir(songpath)}: Thay đổi thư mục làm việc hiện tại thành thư mục chứa file đã chọn.
+   \item \textbf{os.path.basename(path)}: Lấy tên file đã chọn.
+   \item Kiểm tra xem file đã chọn có phải là file nhạc hay không bằng cách kiểm tra đuôi file.
+   \item Nếu file đó là file nhạc, kiểm tra xem nó đã có trong danh sách phát hay chưa bằng cách duyệt qua danh sách phát.
+   \item Nếu file chưa có trong danh sách phát, thêm nó vào cuối danh sách bằng \textbf{Playlist.insert(END, song)}.
+\end{itemize}
+
+\subsubsection{Hàm PlayListSong()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def PlayListSong():
+   global allstop
+   global count
+   global tempstop
+   allstop = False
+   global Song_selected
+   x = 0
+   num_items = Playlist.size()
+   flag = False
+   if num_items > 0:
+       while not allstop:
+           if allstop:
+                break
+           i = 0
+           while(i <= num_items):
+               if allstop:
+                    break
+               if(i == num_items):
+                   i = 0
+               if(flag == True):
+                   flag = False
+                   i = i - 1
+                   item = Playlist.get(i)
+                   count = MusicProgess_slider.get()
+                   mixer.music.play(0,period*count)
+               else:
+                   item = Playlist.get(i)
+                   Song_selected = True
+                   mixer.music.load(item)
+                   mixer.music.play()
+                   count = 0
+       # Wait for the song to finish playing
+               while mixer.music.get_busy():
+                   root.update()
+               if(tempstop):
+                   music = mixer.Sound(Playlist.get(ACTIVE))
+                   music_length_in_seconds = music.get_length()
+                   period = (music_length_in_seconds/100)
+                   while tempstop:
+                       flag = True
+                       root.update()
+                       if not tempstop:
+                           break
+               i += 1
+\end{lstlisting}
+\end{mdframed}
+Hàm này phát các bài hát trong danh sách phát \texttt{Playlist} theo thứ tự. Cụ thể:
+\begin{itemize}
+   \item Khởi tạo các biến toàn cục \texttt{allstop}, \texttt{count}, \texttt{tempstop} và \texttt{Song\_selected}.
+   \item Lấy số lượng bài hát trong danh sách phát bằng \texttt{Playlist.size()}.
+   \item Nếu danh sách phát không rỗng:
+       \begin{itemize}
+           \item Chạy vòng lặp vô tận cho đến khi biến \texttt{allstop} được đặt thành \texttt{True}.
+           \item Trong vòng lặp:
+               \begin{itemize}
+                   \item Nếu biến \texttt{flag} đúng, nghĩa là bài hát đang phát bị tạm dừng, phát tiếp bài hát đó từ vị trí đã tạm dừng.
+                   \item Nếu biến \texttt{flag} sai, phát bài hát tiếp theo trong danh sách.
+                   \item Đợi cho đến khi bài hát kết thúc bằng \texttt{mixer.music.get\_busy()}.
+                   \item Nếu biến \texttt{tempstop} đúng, nghĩa là bài hát đang phát bị tạm dừng, thì đặt biến \texttt{flag} thành \texttt{True} và tiếp tục chờ.
+               \end{itemize}
+           \item Tăng biến đếm \texttt{i} để chuyển sang bài hát tiếp theo.
+       \end{itemize}
+\end{itemize}
+
+\subsubsection{Hàm PlayRandomSong()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def PlayRandomSong():
+    global count
+    global Song_selected
+    global allstop
+    global tempstop
+    mark = -1
+    flag = False
+    allstop = False
+    x = 0
+    num_items = Playlist.size()
+    if num_items > 0:
+        while not allstop:
+            if allstop:
+                 break
+            random_index = random.randint(0, num_items - 1)
+            if (random_index != x or num_items == 1):
+                if allstop:
+                 break
+                if(flag == True):
+                    flag = False
+                    random_index = mark
+                    item = Playlist.get(random_index)
+                    count = MusicProgess_slider.get()
+                    mixer.music.play(0,period*count)
+                else:
+                    item = Playlist.get(random_index)
+                    Song_selected = True
+                    mixer.music.load(item)
+                    mixer.music.play()
+                    count = 0
+                print(random_index)
+                print(item)
+                x = random_index
+        # Wait for the song to finish playing
+                while mixer.music.get_busy():
+                    root.update()
+                if(tempstop):
+                    music = mixer.Sound(Playlist.get(ACTIVE))
+                    music_length_in_seconds = music.get_length()
+                    period = (music_length_in_seconds/100)
+                    mark = random_index
+                    while tempstop:
+                        flag = True
+                        root.update()
+                        if not tempstop:
+                            break
+\end{lstlisting}
+\end{mdframed}
+Hàm này phát các bài hát trong danh sách phát \texttt{Playlist} theo thứ tự ngẫu nhiên. Cụ thể:
+\begin{itemize}
+    \item Khởi tạo các biến toàn cục \texttt{count}, \texttt{Song\_selected}, \texttt{allstop}, \texttt{tempstop}.
+    \item Khởi tạo biến \texttt{mark} để đánh dấu bài hát đang phát, và biến \texttt{flag} để đánh dấu trạng thái tạm dừng.
+    \item Lấy số lượng bài hát trong danh sách phát bằng \texttt{Playlist.size()}.
+    \item Nếu danh sách phát không rỗng:
+        \begin{itemize}
+            \item Chạy vòng lặp vô tận cho đến khi biến \texttt{allstop} được đặt thành \texttt{True}.
+            \item Trong vòng lặp:
+                \begin{itemize}
+                    \item Chọn một chỉ số ngẫu nhiên bằng \texttt{random.randint(0, num\_items - 1)}.
+                    \item Nếu chỉ số ngẫu nhiên khác với chỉ số bài hát hiện tại (trừ khi chỉ có một bài hát trong danh sách):
+                        \begin{itemize}
+                            \item Nếu biến \texttt{flag} đúng, nghĩa là bài hát đang phát bị tạm dừng, phát tiếp bài hát đó từ vị trí đã tạm dừng.
+                            \item Nếu biến \texttt{flag} sai, phát bài hát tại chỉ số ngẫu nhiên.
+                            \item Đợi cho đến khi bài hát kết thúc bằng \texttt{mixer.music.get\_busy()}.
+                            \item Nếu biến \texttt{tempstop} đúng, nghĩa là bài hát đang phát bị tạm dừng, đánh dấu chỉ số hiện tại vào biến \texttt{mark}, đặt biến \texttt{flag} thành \texttt{True} và tiếp tục chờ.
+                        \end{itemize}
+                \end{itemize}
+        \end{itemize}
+\end{itemize}
+
+\subsubsection{Hàm PlayMusic()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def PlayMusic():
+    global allstop
+    allstop = False
+    global count
+    global Song_selected
+    Music_Name = Playlist.get(ACTIVE)
+    print(Music_Name)
+    Song_selected = True
+    mixer.music.load(Playlist.get(ACTIVE))
+    mixer.music.play()
+    count = 0
+\end{lstlisting}
+\end{mdframed}
+Hàm này phát bài hát hiện đang được chọn trong danh sách phát \texttt{Playlist}. Cụ thể:
+\begin{itemize}
+    \item Đặt biến toàn cục \texttt{allstop} thành \texttt{False} để cho phép phát nhạc.
+    \item Lấy tên bài hát đang được chọn bằng \texttt{Playlist.get(ACTIVE)}.
+    \item Đặt biến \texttt{Song\_selected} thành \texttt{True} để đánh dấu rằng có bài hát đang được chọn.
+    \item Tải bài hát đang được chọn vào mixer bằng \texttt{mixer.music.load(Playlist.get(ACTIVE))}.
+    \item Phát bài hát bằng \texttt{mixer.music.play()}.
+    \item Đặt biến \texttt{count} (theo dõi tiến trình phát của bài hát) về 0.
+\end{itemize}
+
+\subsubsection{Hàm onstop()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def onstop():
+    global allstop
+    mixer.music.stop()
+    allstop = True
+\end{lstlisting}
+\end{mdframed}
+Hàm này dừng phát bài hát hiện tại. Cụ thể:
+\begin{itemize}
+    \item Gọi \texttt{mixer.music.stop()} để dừng phát bài hát.
+    \item Đặt biến toàn cục \texttt{allstop} thành \texttt{True} để ngăn không cho phát bài hát khác.
+\end{itemize}
+
+\subsubsection{Hàm onpause()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def onpause():
+    global tempstop
+    mixer.music.pause()
+    tempstop = True
+\end{lstlisting}
+\end{mdframed}
+Hàm này tạm dừng phát bài hát hiện tại. Cụ thể:
+\begin{itemize}
+    \item Gọi \texttt{mixer.music.pause()} để tạm dừng phát bài hát.
+    \item Đặt biến toàn cục \texttt{tempstop} thành \texttt{True} để đánh dấu rằng bài hát đang bị tạm dừng.
+\end{itemize}
+
+\subsubsection{Hàm onresume()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def onresume():
+    global tempstop
+    mixer.music.unpause()
+    tempstop = False
+\end{lstlisting}
+\end{mdframed}
+Hàm này tiếp tục phát bài hát đã bị tạm dừng. Cụ thể:
+\begin{itemize}
+    \item Gọi \texttt{mixer.music.unpause()} để tiếp tục phát bài hát.
+    \item Đặt biến toàn cục \texttt{tempstop} thành \texttt{False} để đánh dấu rằng bài hát không còn bị tạm dừng nữa.
+\end{itemize}
+
+\subsubsection{Hàm RemoveSong()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def RemoveSong():
+global Song_selected
+current_selection = Playlist.curselection()
+if current_selection:
+Playlist.delete(current_selection)
+Song_selected = False
+\end{lstlisting}
+\end{mdframed}
+Hàm này xóa bài hát đang được chọn khỏi danh sách phát \texttt{Playlist}. Cụ thể:
+\begin{itemize}
+\item Lấy chỉ số của bài hát đang được chọn bằng \texttt{Playlist.curselection()}.
+\item Nếu có bài hát được chọn (danh sách chỉ số không rỗng):
+\begin{itemize}
+\item Xóa bài hát khỏi danh sách phát bằng \texttt{Playlist.delete(current_selection)}.
+\item Đặt biến \texttt{Song_selected} thành \texttt{False} để đánh dấu rằng không có bài hát nào được chọn.
+\end{itemize}
+\end{itemize}
+\subsubsection{Hàm ClearPlaylist()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+
+def ClearPlaylist():
+
+global Song_selected
+Playlist.delete(0, END)
+Song_selected = False
+\end{lstlisting}
+\end{mdframed}
+Hàm này xóa tất cả các bài hát khỏi danh sách phát \texttt{Playlist}. Cụ thể:
+\begin{itemize}
+\item Xóa tất cả các phần tử trong danh sách phát bằng \texttt{Playlist.delete(0, END)}.
+
+\end{itemize}
+
+\subsubsection{Hàm onsliderpress()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def on_slider_press():
+global tempstop
+global auto
+auto = False
+tempstop = True
+mixer.music.stop()
+\end{lstlisting}
+\end{mdframed}
+Hàm này được gọi khi thanh trượt tiến trình bài hát (MusicProgessslider) bắt đầu được nhấn giữ. Cụ thể:
+\begin{itemize}
+\item Đặt biến toàn cục \texttt{auto} thành \texttt{False} để tắt chế độ phát tự động.
+\item Đặt biến toàn cục \texttt{tempstop} thành \texttt{True} để đánh dấu rằng bài hát đang bị tạm dừng.
+\item Gọi \texttt{mixer.music.stop()} để dừng phát bài hát hiện tại.
+\end{itemize}
+\subsubsection{Hàm onsliderrelease()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def on_slider_release():
+global tempstop
+global auto
+global count
+tempstop = False
+mixer.music.load(Playlist.get(ACTIVE))
+music = mixer.Sound(Playlist.get(ACTIVE))
+music_length_in_seconds = music.get_length()
+period = (music_length_in_seconds/100)
+auto = True
+count = MusicProgess_slider.get()
+mixer.music.play(0,periodcount)
+\end{lstlisting}
+\end{mdframed}
+Hàm này được gọi khi thanh trượt tiến trình bài hát (MusicProgessslider) bị nhả ra sau khi đã nhấn giữ. Cụ thể:
+\begin{itemize}
+\item Đặt biến toàn cục \texttt{tempstop} thành \texttt{False} để đánh dấu rằng bài hát không còn bị tạm dừng nữa.
+\item Tải bài hát đang được chọn vào mixer bằng \texttt{mixer.music.load(Playlist.get(ACTIVE))}.
+\item Tạo một đối tượng \texttt{mixer.Sound} từ bài hát đang được chọn.
+\item Lấy độ dài của bài hát (tính bằng giây) bằng \texttt{music.getlength()}.
+\item Tính khoảng thời gian tương ứng với 1% của bài hát.
+\item Đặt biến toàn cục \texttt{auto} thành \texttt{True} để bật chế độ phát tự động.
+\item Lấy vị trí hiện tại của thanh trượt bằng \texttt{MusicProgessslider.get()}.
+\item Phát bài hát từ vị trí đã chọn bằng \texttt{mixer.music.play(0, periodcount)}.
+\end{itemize}
+\subsubsection{Hàm updateprogess()}
+\begin{mdframed}[hidealllines=true,backgroundcolor=magenta!10]
+\begin{lstlisting}
+def update_progess():
+global allstop
+global auto
+global tempstop
+allstop = False
+global Song_selected
+if(auto == True):
+global Song_selected
+while(Song_selected == False):
+pygame.time.wait(100)
+if(Song_selected):
+if(mixer.music.get_busy()):
+music = mixer.Sound(Playlist.get(ACTIVE))
+music_length_in_seconds = music.get_length()
+period = (music_length_in_seconds/100)*1000
+while(1):
+if allstop:
+MusicProgess_slider.set(0)
+if not tempstop:
+pygame.time.wait(int(period))
+MusicProgess_slider.set(count)
+count += 1
+\end{lstlisting}
+\end{mdframed}
+Hàm này cập nhật thanh trượt tiến trình bài hát (MusicProgessslider) trong khi bài hát đang phát. Cụ thể:
+\begin{itemize}
+\item Đặt biến toàn cục \texttt{allstop} thành \texttt{False} để cho phép phát nhạc.
+\item Nếu biến \texttt{auto} đúng (chế độ phát tự động):
+\begin{itemize}
+\item Chờ cho đến khi có bài hát được chọn (biến \texttt{Songselected} đúng).
+\item Nếu có bài hát đang phát:
+\begin{itemize}
+\item Tạo một đối tượng \texttt{mixer.Sound} từ bài hát đang phát.
+\item Lấy độ dài của bài hát (tính bằng giây) bằng \texttt{music.getlength()}.
+\item Tính khoảng thời gian tương ứng với 1% của bài hát (tính bằng mili giây).
+\item Chạy vòng lặp vô tận:
+\begin{itemize}
+\item Nếu biến \texttt{allstop} đúng, đặt thanh trượt về 0.
+\item Nếu bài hát không bị tạm dừng:
+\begin{itemize}
+\item Đợi trong khoảng thời gian tương ứng với 1% của bài hát.
+\item Cập nhật vị trí của thanh trượt bằng \texttt{MusicProgessslider.set(count)}.
+\item Tăng biến đếm \texttt{count}.
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+\end{itemize}
+
+
+\end{enumerate}
+
+
+
+\end{document}
