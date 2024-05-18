@@ -6,37 +6,38 @@ This is an application where you can add one or more of your favorite songs or v
 
 Before running the application, make sure you have installed the following dependencies:
 
-- Python 3.x
+- Python 3
 - Tkinter
 - Pygame
+-Pillow
 - OS
-- Mutagen
 - Time
 - Threading
-- OpenCV
 
-You can install the dependencies using pip3 if your Python is version 3.x:
+
+You can install the dependencies using Ubuntu if your Python is version 3.x:
 
 ```
-pip3 install pygame
-pip3 install mutagen
-pip3 install opencv-python-headless
+sudo apt install python3-tk
+sudo apt install python3-pygame
+sudo apt install python3-pil
+
 ```
 ## How to download and run the project
 
 **Access GitHub:**
 ```
-git clone https://github.com/hung573/PlayAudio_PlayVideo
+git clone https://github.com/Foxx1412/music-player
 ```
 **Go to the folder and download it:** 
 ```
-cd PlayAudio_PlayVideo
+cd Downloads
 ```
 **Run Application:** 
 ```
-python main.py
+python project.py
 ```
-![UI_Main](img/UI_main.png)
+![UI_Main](img/UI.png)
 ```
 ```
 **User manual** 
@@ -65,4 +66,5 @@ You can seek to a specific position in the audio by dragging the time slider.
 
 - This application only supports playing audio and video files that have been downloaded and added to the playlist.
 
-https://hung573.github.io/PlayAudio_PlayVideo/
+git clone https://github.com/Foxx1412/music-player
+
